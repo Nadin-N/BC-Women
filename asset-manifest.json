@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BC-Women-react/static/css/main.7acaea2f.css",
+    "main.js": "/BC-Women-react/static/js/main.95d7e02d.js",
+    "index.html": "/BC-Women-react/index.html",
+    "main.7acaea2f.css.map": "/BC-Women-react/static/css/main.7acaea2f.css.map",
+    "main.95d7e02d.js.map": "/BC-Women-react/static/js/main.95d7e02d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.95d7e02d.js"
+  ]
+}
