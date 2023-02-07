@@ -1,3 +1,19 @@
+import {
+  Card,
+  CardHeader,
+  CardPoster,
+  CardBody,
+  Tag,
+  CardTitle,
+  CardText,
+  CardFooter,
+  UserBox,
+  Avatar,
+  UserInfo,
+  UserName,
+  Date,
+} from './BlogCard.styled';
+
 export function BlogCard({
   poster,
   tag,
@@ -8,24 +24,25 @@ export function BlogCard({
   postedAt,
 }) {
   return (
-    <div>
-      <div>
-        <img src={poster} alt={title} />
-      </div>
-      <div>
-        <h2>{tag}</h2>
-        <p>{title}</p>
-        <p>{description}</p>
-      </div>
-      <div>
-        <div>
-          <img src={avatar} alt={userName} />
-        </div>
-        <div>
-          <h3>{userName}</h3>
-          <p>{postedAt}</p>
-        </div>
-      </div>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardPoster src={poster} alt={title} />
+      </CardHeader>
+      <CardBody>
+        <Tag>{tag}</Tag>
+        <CardTitle>{title}</CardTitle>
+        <CardText>{description}</CardText>
+      </CardBody>
+      <CardFooter>
+        <UserBox>
+          <Avatar src={avatar} alt={userName} />
+
+          <UserInfo>
+            <UserName>{userName}</UserName>
+            <Date>{postedAt}</Date>
+          </UserInfo>
+        </UserBox>
+      </CardFooter>
+    </Card>
   );
 }
