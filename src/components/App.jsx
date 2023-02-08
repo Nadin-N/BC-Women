@@ -1,10 +1,20 @@
 import { BlogCard } from './BlogCard/BlogCard';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Points } from './Points/Points';
 import article from 'data/article.json';
-console.log(article);
 
 export const App = () => {
   return (
-    <BlogCard
+    <Tabs>
+  <TabList>
+    <Tab>BlogCard</Tab>
+    <Tab>Points</Tab>
+    <Tab>Three</Tab>
+  </TabList>
+
+  <TabPanels>
+    <TabPanel>
+      <BlogCard
       poster={article.poster}
       tag={article.tag}
       title={article.title}
@@ -13,5 +23,15 @@ export const App = () => {
       avatar={article.avatar}
       postedAt={article.postedAt}
     />
+    </TabPanel>
+    <TabPanel>
+      <Points />
+    </TabPanel>
+    <TabPanel>
+      <p>three!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+    
   );
 };
