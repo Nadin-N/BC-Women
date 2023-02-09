@@ -2,6 +2,7 @@ import { BlogCard } from './BlogCard/BlogCard';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { Points } from './Points/Points';
 import article from 'data/article.json';
+import {FriendList } from './FriendList/FriendList';
 
 export const App = () => {
   return (
@@ -9,7 +10,7 @@ export const App = () => {
   <TabList>
     <Tab>BlogCard</Tab>
     <Tab>Points</Tab>
-    <Tab>Three</Tab>
+    <Tab>Friend-list</Tab>
   </TabList>
 
   <TabPanels>
@@ -28,10 +29,11 @@ export const App = () => {
       <Points />
     </TabPanel>
     <TabPanel>
-      <p>three!</p>
+     <FriendList />
     </TabPanel>
   </TabPanels>
 </Tabs>
+
     
   );
 };
