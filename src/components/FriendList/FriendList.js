@@ -42,7 +42,6 @@ export class FriendList extends Component {
     const { friends } = this.state;
     if (prevState.friends !== friends) {
       storage.save('friends-list', friends);
-      console.log(friends);
     }
   }
 
