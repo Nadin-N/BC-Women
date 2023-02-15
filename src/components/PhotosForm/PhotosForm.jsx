@@ -1,30 +1,22 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-export class PhotosForm extends Component {
-  state = {
-    query: '',
+export function PhotosForm({ onSubmit }) {
+  const [query, setQuery] = useState('');
+
+  const hendleInput = ({ target }) => {
+    setQuery(target.value);
   };
 
-  hendleInput = ({ target }) => {
-    this.setState({ [target.name]: target.value });
-  };
-
-  hendleSubmit = event => {
+  const hendleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.query);
-    this.setState({ query: '' });
+    onSubmit(query);
+    setQuery('');
   };
-  render() {
-    return (
-      <form onSubmit={this.hendleSubmit}>
-        <input
-          type="text"
-          name="query"
-          value={this.state.query}
-          onChange={this.hendleInput}
-        />
-        <button type="submit">Search</button>
-      </form>
-    );
-  }
+
+  return (
+    <form onSubmit={hendleSubmit}>
+      <input type="text" name="query" value={query} onChange={hendleInput} />
+      <button type="submit">Search</button>
+    </form>
+  );
 }

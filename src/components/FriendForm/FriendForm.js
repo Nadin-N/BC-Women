@@ -1,54 +1,75 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-export class FriendForm extends Component {
-  state = {
-    name: '',
-    lastname: '',
-    email: '',
-    number: '',
-  };
-  inputChange = event => {
+export function FriendForm ({onSubmit}) {
+
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+
+
+
+  const inputChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'lastname':
+        setLastname(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        break;
+    }
     
   };
-  resetForm = () => {
-    this.setState({ name: '',
-    lastname: '',
-    email: '',
-    number: '',})
+  const resetForm = () => {
+    
+    setName("");
+    setLastname("");
+    setEmail("");
+    setNumber("");
   }
-  handleSubmit = event =>{
+  const handleSubmit = event =>{
     event.preventDefault();
-    this.props.onSubmit(this.state);
-    this.resetForm();
+    
+   onSubmit({name, lastname, email, number});
+
+    resetForm();
   }
 
-  render() {
+ 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
-          onChange={this.inputChange}
-          value={this.state.name}
+          onChange={inputChange}
+          value={name}
           name="name"
         />
         <input
-          onChange={this.inputChange}
-          value={this.state.lastname}
+          onChange={inputChange}
+          value={lastname}
           name="lastname"
         />
         <input
-          onChange={this.inputChange}
-          value={this.state.email}
+          onChange={inputChange}
+          value={email}
           name="email"
         />
         <input
-          onChange={this.inputChange}
-          value={this.state.number}
+          onChange={inputChange}
+          value={number}
           name="number"
         />
         <button  type="submit">Submit</button>
       </form>
     );
-  }
+  
 }
