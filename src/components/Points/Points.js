@@ -1,40 +1,37 @@
-import { Component } from "react";
+import { useState } from 'react';
 
-export class Points extends Component {
-    state = {
+export function Points() {
+  const [points, setPoints] = useState({
     one: 0,
     two: 0,
     three: 0,
     four: 0,
     five: 0,
-    }
-    
-    handelIncrement = (option, value) => {
-        this.setState(
-            prevState => ({
-                [option]: prevState[option] + value,
-            })
-        )
-    }
+  });
 
-    countPoints = () => {
-        return Object.values(this.state).reduce((acc, item) => acc + item
-        , 0)
-    }
+  const handelIncrement = (option, value) => {
+    setPoints(prevState => ({
+      ...prevState,
+      [option]: prevState[option] + value,
+    }));
+  };
 
-    render() {
-        const total = this.countPoints();
-return (
+  const countPoints = () => {
+    return Object.values(points).reduce((acc, item) => acc + item, 0);
+  };
 
+  const total = countPoints();
+
+  return (
     <>
-    {Object.entries(this.state).map(([key], index) => {
+      {Object.entries(points).map(([key], index) => {
         return (
-            <button key={key} onClick={() => this.handelIncrement(key, index+1)}>{key}</button>
-        )
-    })}
-    <h2>Points:{total}</h2>
+          <button key={key} onClick={() => handelIncrement(key, index + 1)}>
+            {key}
+          </button>
+        );
+      })}
+      <h2>Points:{total}</h2>
     </>
-)
-
-    }
+  );
 }

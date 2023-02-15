@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import storage from 'helpers/storage';
 import { FriendForm } from '../FriendForm/FriendForm';
 import { nanoid } from 'nanoid';
@@ -27,62 +27,55 @@ const FRIENDS = [
   },
 ];
 
-export class FriendList extends Component {
-  state = {
-    friends: [],
-    filter: '',
-  };
+export function FriendList() {
+ 
+  const [friends, setFriends] = useState(() => storage.load('friends-list') ?? FRIENDS);
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-    const savedFriends = storage.load('friends-list') ?? FRIENDS;
-    this.setState({ friends: savedFriends });
-  }
+ 
 
-  componentDidUpdate(_, prevState) {
-    const { friends } = this.state;
-    if (prevState.friends !== friends) {
-      storage.save('friends-list', friends);
-    }
-  }
+  useEffect(() => {
+    storage.save('friends-list', friends);
+  }, [friends]) 
 
-  addFfiend = friend => {
-    const isExist = this.state.friends.find(({ name }) => {
+
+  const addFfiend = friend => {
+    const isExist = friends.find(({ name }) => {
       return friend.name === name;
     });
     if (isExist) {
       alert('This friend is existed!!!!');
       return;
     }
-    this.setState(prevState => {
-      return { friends: [...prevState.friends, { ...friend, id: nanoid() }] };
-    });
+    setFriends(prevState => 
+       [...prevState, { ...friend, id: nanoid() }] 
+    );
   };
-  handleFilter = ({ target: { value } }) => {
-    this.setState({ filter: value });
+  const handleFilter = ({ target: { value } }) => {
+    setFilter( value );
   };
-  getFilteredFriends = () => {
-    const { friends, filter } = this.state;
+
+  const getFilteredFriends = () => {
     const normaliseFilter = filter.trim().toLowerCase();
     return friends.filter(friend => {
       return friend.name.toLowerCase().includes(normaliseFilter);
     });
   };
-  deleteFriend = id => {
-    this.setState(prevState => {
-      return { friends: prevState.friends.filter(friend => friend.id !== id) };
-    });
+  
+  const deleteFriend = id => {
+    setFriends(prevState =>  prevState.filter(friend => friend.id !== id))
   };
 
-  render() {
-    const { friends } = this.state;
-    const filteredFriends = this.getFilteredFriends();
+ 
+    
+    const filteredFriends = getFilteredFriends();
     return (
       <>
         <h2>Friend-list</h2>
-        <FriendForm onSubmit={this.addFfiend} />
+        <FriendForm onSubmit={addFfiend} />
         <div>
           <h3>Filter friends</h3>
-          <input onChange={this.handleFilter} />
+          <input onChange={handleFilter} />
         </div>
 
         {friends.length > 0 && (
@@ -94,7 +87,7 @@ export class FriendList extends Component {
                   <span>Surname: {lastname}</span>
                   <span>Email: {email}</span>
                   <span>Phone-number: {number}</span>
-                  <button onClick={() => this.deleteFriend(id)}>Delete</button>
+                  <button onClick={() => deleteFriend(id)}>Delete</button>
                 </li>
               );
             })}
@@ -102,5 +95,4 @@ export class FriendList extends Component {
         )}
       </>
     );
-  }
 }
