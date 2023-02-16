@@ -3,8 +3,6 @@ import axios from 'axios';
 const BASE_URL = 'https://api.pexels.com/v1/';
 const API_KEY = '563492ad6f9170000100000108dc2880626e4436b3634ce1cf6b4d74';
 
-console.log(axios.defaults);
-
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.headers.common['Authorization'] = API_KEY;
 axios.defaults.params = {
