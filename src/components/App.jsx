@@ -2,7 +2,7 @@ import { BlogCard } from './BlogCard/BlogCard';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { Points } from './Points/Points';
 import article from 'data/article.json';
-import { FriendList } from './FriendList/FriendList';
+import { Friends } from './Friends/Friends';
 import { Photos } from './Photos/Photos';
 
 export const App = () => {
@@ -31,7 +31,7 @@ export const App = () => {
           <Points />
         </TabPanel>
         <TabPanel>
-          <FriendList />
+          <Friends />
         </TabPanel>
         <TabPanel>
           <Photos />
