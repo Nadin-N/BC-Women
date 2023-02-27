@@ -11,4 +11,8 @@ export const getFilteredFriends = createSelector(
       friend.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
+
+
 );
+
+export const getIsloading = state => state.friends.isLoading;

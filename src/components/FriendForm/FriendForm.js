@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addFriend } from 'redux/friendsSlice';
-import { nanoid } from 'nanoid';
+import { addFriend } from 'redux/operations';
+
+
+
 import { getFriends } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 
 export function FriendForm({ onSubmit }) {
   const dispatch = useDispatch();
+  
   const friends = useSelector(getFriends);
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
@@ -50,7 +53,7 @@ export function FriendForm({ onSubmit }) {
       return;
     }
 
-    dispatch(addFriend({ name, lastname, email, number, id: nanoid() }));
+    dispatch(addFriend({ name, lastname, email, number }));
 
     resetForm();
   };
