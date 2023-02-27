@@ -35,3 +35,17 @@ export function Points() {
     </>
   );
 }
+
+
+
+
+  
+
+
+  
+  
+
+ 
+
+
+
