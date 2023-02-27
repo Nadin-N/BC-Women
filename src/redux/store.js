@@ -1,6 +1,5 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
-
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -54,7 +53,7 @@ export const store = configureStore({
     friends: friendReducer,
     filter: filterReducer,
   },
- 
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
