@@ -1,23 +1,21 @@
+import { Routes, Route } from "react-router-dom";
 import { BlogCard } from './BlogCard/BlogCard';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { Points } from './Points/Points';
 import article from 'data/article.json';
 import { Friends } from './Friends/Friends';
 import { Photos } from './Photos/Photos';
+import {Navbar } from './Navbar/Navbar';
+import { Login } from "./Login/Login";
+import { Register } from "./Register/Register";
 
 export const App = () => {
   return (
-    <Tabs>
-      <TabList>
-        <Tab>BlogCard</Tab>
-        <Tab>Points</Tab>
-        <Tab>Friend-list</Tab>
-        <Tab>Photos</Tab>
-      </TabList>
+    <Routes>
+      <Route path="/" element={<Navbar/>}>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
 
-      <TabPanels>
-        <TabPanel>
-          <BlogCard
+        <Route index element={<BlogCard
             poster={article.poster}
             tag={article.tag}
             title={article.title}
@@ -25,18 +23,12 @@ export const App = () => {
             userName={article.name}
             avatar={article.avatar}
             postedAt={article.postedAt}
-          />
-        </TabPanel>
-        <TabPanel>
-          <Points />
-        </TabPanel>
-        <TabPanel>
-          <Friends />
-        </TabPanel>
-        <TabPanel>
-          <Photos />
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+          />}/>
+          <Route path="/points" element={<Points/>}/>
+          <Route path="/friends" element={<Friends/>}/>
+          <Route path="/photos" element={<Photos/>}/>
+      </Route>
+    </Routes>
+   
   );
 };
