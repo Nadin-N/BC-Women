@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -7,12 +9,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 import { friendReducer } from './friendsSlice';
 import { filterReducer } from './filterSlice';
-
-// persistStore,
-// persistReducer,
+import { userReducer } from './user/userSlice';
 
 //збереження в локал сторедж окремо
 // const persistConfig = {
@@ -39,19 +39,20 @@ import { filterReducer } from './filterSlice';
 //   filter: filterReducer,
 // });
 
-// const persistConfig = {
-//   key: 'friends',
-//   version: 1,
-//   storage,
-//   blacklist: ['filter'],
-// };
+const persistConfig = {
+  key: 'user',
+  version: 1,
+  storage,
+  whitelist: ['token'],
+};
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, userReducer);
 
 export const store = configureStore({
   reducer: {
     friends: friendReducer,
     filter: filterReducer,
+    user: persistedReducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -62,4 +63,4 @@ export const store = configureStore({
     }),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);

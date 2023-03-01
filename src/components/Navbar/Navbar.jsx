@@ -1,30 +1,16 @@
-import {NavLink, Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
+import { UserMenu } from 'components/UserMenu/UserMenu';
+import { AuthNav } from 'components/AuthNav/AuthNav';
+import { NavLink } from 'react-router-dom';
 
-
-export const Navbar=()=>{
-
-    return <>
-    <ul>
-    <li>
-    <NavLink  to='login'>Login</NavLink>
-</li>
-<li>
-    <NavLink  to='register'>Register</NavLink>
-</li>
-<li>
-    <NavLink  to='/'>Home</NavLink>
-</li>
-
-<li>
-    <NavLink  to='points'>Points</NavLink>
-</li>
-<li>
-    <NavLink  to='friends'>Friend-list</NavLink>
-</li>
-<li>
-    <NavLink  to='photos'>Photos</NavLink>
-</li>
-    </ul>
-    <Outlet/>
-    </>
-}
+export const Navbar = () => {
+  const { isLoggedIn } = useAuth();
+  return (
+    <div>
+      <NavLink to="/">Home</NavLink>
+      {isLoggedIn ? <AuthNav /> : <UserMenu />}
+      <Outlet />
+    </div>
+  );
+};
