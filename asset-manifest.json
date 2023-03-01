@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/BC-Women-react/static/css/main.c3d5249d.css",
-    "main.js": "/BC-Women-react/static/js/main.a9c454c0.js",
+    "main.js": "/BC-Women-react/static/js/main.a1931fe1.js",
     "index.html": "/BC-Women-react/index.html",
     "main.c3d5249d.css.map": "/BC-Women-react/static/css/main.c3d5249d.css.map",
-    "main.a9c454c0.js.map": "/BC-Women-react/static/js/main.a9c454c0.js.map"
+    "main.a1931fe1.js.map": "/BC-Women-react/static/js/main.a1931fe1.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.a9c454c0.js"
+    "static/js/main.a1931fe1.js"
   ]
 }
