@@ -9,7 +9,7 @@ export const Navbar = () => {
   return (
     <div>
       <NavLink to="/">Home</NavLink>
-      {isLoggedIn ? <AuthNav /> : <UserMenu />}
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
       <Outlet />
     </div>
   );
