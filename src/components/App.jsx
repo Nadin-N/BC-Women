@@ -12,6 +12,7 @@ import { Register } from './Register/Register';
 import { refreshUser } from 'redux/user/operations';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Contacts } from './Contacts/Contacts';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,12 @@ export const App = () => {
         <Route
           path="/photos"
           element={<PrivateRoute redirectTo="/login" component={<Photos />} />}
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
         />
       </Route>
     </Routes>

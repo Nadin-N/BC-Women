@@ -13,31 +13,9 @@ import storage from 'redux-persist/lib/storage';
 import { friendReducer } from './friendsSlice';
 import { filterReducer } from './filterSlice';
 import { userReducer } from './user/userSlice';
+import { contactsReducer } from './contacts/contactsSlice';
 
-//збереження в локал сторедж окремо
-// const persistConfig = {
-//   key: 'friends',
-//   version: 1,
-//   storage,
-// };
 
-// const filterPersistConfig = {
-//   key: 'filter',
-//   version: 1,
-//   storage,
-// };
-
-// constpersistedFriendReducer = persistReducer(persistConfig, friendReducer);
-// const filterPersistedReducer = persistReducer(
-//   filterPersistConfig,
-//   filterReducer
-// );
-
-//збереження в локал сторедж одним об'єктом
-// const rootReducer = combineReducers({
-//   friends: friendReducer,
-//   filter: filterReducer,
-// });
 
 const persistConfig = {
   key: 'user',
@@ -52,7 +30,8 @@ export const store = configureStore({
   reducer: {
     friends: friendReducer,
     filter: filterReducer,
-    user: persistedReducer,
+		user: persistedReducer,
+	 contacts: contactsReducer,
   },
 
   middleware: getDefaultMiddleware =>
